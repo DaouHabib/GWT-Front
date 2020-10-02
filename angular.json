@@ -3,9 +3,13 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "GWT-front": {
+    "fuse": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,20 +17,23 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/GWT-front",
+            "aot": true,
+            "outputPath": "dist/fuse",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/app/main/angular-material-elements",
+              "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "showCircularDependencies": false
           },
           "configurations": {
             "production": {
@@ -41,19 +48,45 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
+              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "6mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+            },
+            "ec": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "sourceMap": true,
+              "extractCss": true
+            },
+            "hmr": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
                 }
               ]
             }
@@ -62,18 +95,25 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "GWT-front:build"
+            "browserTarget": "fuse:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "GWT-front:build:production"
+              "browserTarget": "fuse:build:production"
+            },
+            "hmr": {
+              "hmr": true,
+              "browserTarget": "fuse:build:hmr"
+            },
+            "ec": {
+              "browserTarget": "fuse:build:ec"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "GWT-front:build"
+            "browserTarget": "fuse:build"
           }
         },
         "test": {
@@ -85,10 +125,11 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -102,7 +143,9 @@
               "e2e/tsconfig.json"
             ],
             "exclude": [
-              "**/node_modules/**"
+              "**/node_modules/**",
+              "**/src/app/fake-db/**/*",
+              "**/src/assets/angular-material-examples/**/*"
             ]
           }
         },
@@ -110,19 +153,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "GWT-front:serve"
+            "devServerTarget": "fuse:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "GWT-front:serve:production"
+              "devServerTarget": "fuse:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "GWT-front",
+  "defaultProject": "fuse",
   "cli": {
-    "analytics": "abaf324c-456b-4c04-b3a6-1b30d32fe17a"
+    "analytics": false
   }
 }
