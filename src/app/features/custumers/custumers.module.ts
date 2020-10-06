@@ -28,11 +28,15 @@ import { ConfirmationModalModule } from "app/shared/components/confirmation-moda
 import { MatDialogModule } from "@angular/material/dialog";
 import { HttpClientModule } from "@angular/common/http";
 import { MatStepperModule } from "@angular/material/stepper";
+import { UsersListComponent } from './users-list/users-list.component';
+import { UserModalComponent } from './shared/Modals/user-modal/user-modal.component';
 
 @NgModule({
     declarations: [
         
-    ],
+    UsersListComponent,
+        
+    UserModalComponent],
     imports: [
         HttpClientModule,
         ConfirmationModalModule,
