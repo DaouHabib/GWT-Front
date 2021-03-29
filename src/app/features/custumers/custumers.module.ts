@@ -30,13 +30,19 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatStepperModule } from "@angular/material/stepper";
 import { UsersListComponent } from './users-list/users-list.component';
 import { UserModalComponent } from './shared/Modals/user-modal/user-modal.component';
+import { ChampListComponent } from './champ-list/champ-list.component';
+import { ChampModalComponent } from './shared/champ-modal/champ-modal.component';
 
 @NgModule({
     declarations: [
         
     UsersListComponent,
         
-    UserModalComponent],
+    UserModalComponent,
+        
+    ChampListComponent,
+        
+    ChampModalComponent],
     imports: [
         HttpClientModule,
         ConfirmationModalModule,

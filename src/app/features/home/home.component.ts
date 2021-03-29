@@ -1,19 +1,23 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from "@angular/core";
 import { startWith, map } from "rxjs/operators";
 import { FormControl } from "@angular/forms";
 import { Observable, Subscription } from "rxjs";
 
 import { ToastService } from 'app/shared/services/toast.service';
+import { fuseAnimations } from "../../../@fuse/animations";
 
 @Component({
     selector: "app-home",
     templateUrl: "./home.component.html",
     styleUrls: ["./home.component.scss"],
+    encapsulation: ViewEncapsulation.None,
+    animations: fuseAnimations,
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
     stations: any[];
-    tanks: any[];
+    lots:any[];
+    fields:any[];
 
     stateCtrl = new FormControl();
     filteredStates: Observable<any[]>;
@@ -21,6 +25,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     subscription: Subscription;
 
     ngOnInit(): void {
+        this.fields= [{
+            "_id":"123",
+            "Adresse":"Tunis",
+            "name":"Makki",
+            "globalArea":5
+        },
+        {
+            "_id":"123",
+            "Adresse":"sfax",
+            "name":"Makki",
+            "globalArea":500
+        }];
     }
 
     constructor(
@@ -36,6 +52,35 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     ngOnDestroy(): void {
         // this.subscription.unsubscribe();
+    }
+    changed(){
+        console.log("Changed")
+      
+    }
+    getlots(){
+
+        this.lots= [{
+            "_id":"123",
+            "name":"Tunis",
+            "volume":500,
+            "min":50,
+            "max":100,
+
+        },
+        {
+            "_id":"123",
+            "name":"sfax",
+            "volume":500,
+            "min":500,
+            "max":1000
+        },
+        {
+            "_id":"123",
+            "name":"mahdia",
+            "volume":500,
+            "min":544,
+            "max":1044
+        }];
     }
 
     private _filterStates(value: string): any[] {

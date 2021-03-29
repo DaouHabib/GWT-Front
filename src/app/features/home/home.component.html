@@ -1,0 +1,70 @@
+<div fxLayout="row" fxLayoutAlign="center center" >
+    <form class="example-form" >
+        <mat-form-field class="example-full-width">
+            <input matInput
+                    placeholder="Fileds"
+                    aria-label="Fileds"
+                    [matAutocomplete]="auto"
+                    [formControl]="stateCtrl">
+                    <mat-icon matSuffix>search</mat-icon>
+            <mat-autocomplete #auto="matAutocomplete" >
+                <mat-option *ngFor="let filed of fields" [value]="filed.Adresse" (click)="getlots()">
+                <small>Adresse: {{filed.Adresse}} </small>
+                <span>Name {{filed.name}}</span> |
+                <span> Gloabal Area{{filed.globalArea}}</span> |
+
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+ </div>
+ <ng-container  *ngFor="let lot of lots; let i= index">
+    <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column"
+    fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+    
+    <!-- Front -->
+    <div class="fuse-widget-front">
+    <div class="pl-16 pr-8 py-16 h-52" fxLayout="row"
+    fxLayoutAlign="space-between center">
+    <div class="h3">Volume {{lot.volume}}</div>
+    
+    <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+           aria-label="more">
+       <mat-icon>more_vert</mat-icon>
+    </button>
+    </div>
+    
+    <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+    <div class="red-fg font-size-72 line-height-72">
+        {{lot.name}}
+    </div>
+    <div class="h3 secondary-text font-weight-500"> Region
+    </div>
+    </div>
+    
+    <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+    <span class="h4 secondary-text text-truncate">
+        Range
+    </span>
+    <span class="h4 ml-8">Min: {{lot.min}} Max: {{lot.max}}</span>
+    </div>
+    </div>
+    <!-- / Front -->
+    
+    <!-- Back -->
+    <div class="fuse-widget-back p-16 pt-32">
+    <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+       aria-label="Flip widget">
+    <mat-icon class="s-16">close</mat-icon>
+    </button>
+    
+    <div>
+        For more Details Go to Electrovans 
+        <button mat-icon-button color="primary" [routerLink]="['/features/home/electrovan', lot.name]"> Show electrovans</button>
+
+
+  </div>
+    </div>
+    </fuse-widget>
+</ng-container>
+

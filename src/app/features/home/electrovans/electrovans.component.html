@@ -1,0 +1,42 @@
+
+<ng-container  *ngFor="let electrovan of electrovans; let i= index">
+    <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column"
+    fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+    
+    <!-- Front -->
+    <div class="fuse-widget-front">
+    <div class="pl-16 pr-8 py-16 h-52" fxLayout="row"
+    fxLayoutAlign="space-between center">
+    <div class="h3">Volume {{electrovan.name}}</div>
+    
+    <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+           aria-label="more">
+       <mat-icon>more_vert</mat-icon>
+    </button>
+    </div>
+    
+    <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+    <div class="red-fg font-size-72 line-height-72">
+        {{electrovan.name}}
+    </div>
+    <div class="h3 secondary-text font-weight-500"> Electrovan
+    </div>
+    </div>
+    
+    <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+    <span class="h4 secondary-text text-truncate">
+        Config Electrovan
+    </span>
+    <span class="h4 ml-8">    
+        <div style="float:right ">
+        <mat-slide-toggle
+         (change)="changed()">Lauch Electrovan</mat-slide-toggle>
+
+    </div></span>
+    </div>
+    </div>
+    <!-- / Front -->
+    
+
+    </fuse-widget>
+</ng-container>

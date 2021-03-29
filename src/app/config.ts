@@ -3,7 +3,7 @@ import { environment } from '../environments/environment';
 export const APIS: { [ prop: string ]: string } = {
     AUTH: `${environment.BaseURL}/auth`,
     USERS: `${environment.BaseURL}/users`,
-    STATIONS: `${environment.BaseURL}/stations`,
+    CHAMPS: `${environment.BaseURL}/champ`,
     TANKS: `${environment.BaseURL}/tanks`,
     POMPES: `${environment.BaseURL}/pompes`,
     PISTOLETS: `${environment.BaseURL}/pistolets`,
