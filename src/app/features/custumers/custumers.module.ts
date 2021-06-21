@@ -35,13 +35,9 @@ import { ChampModalComponent } from './shared/champ-modal/champ-modal.component'
 
 @NgModule({
     declarations: [
-        
     UsersListComponent,
-        
     UserModalComponent,
-        
     ChampListComponent,
-        
     ChampModalComponent],
     imports: [
         HttpClientModule,
